@@ -1,0 +1,127 @@
+job:
+  name: generic example crawler
+  db: generic
+  collection: generic_example
+  mode: url # also can be `bundle`
+  size: 100000   # the destination (including bundle or url) size
+  limit: 0  # 0 means no restrictions, if greater than 0, means webpages opened per minute.
+  master_port: 12106
+  port: 12107
+  instances: 2
+  mongo:
+    host: localhost
+    port: 27017
+  patterns:
+    - regex: http://www.techweb.com.cn/search/?.*
+      name: article
+      store: no
+      extract: no
+    - regex: http://tech2ipo.com/\d+.+
+      name: article
+      store: yes
+      extract: yes
+    - regex: http://www.huxiu.com/\w*/\d+.+
+      name: article
+      store: yes
+      extract: yes
+    - regex: http://www.36kr.com/$
+      name: home
+      store: not
+      extract: not
+    - regex: http://www.csdn.net/$
+      name: home
+      store: no
+      extract: no
+    - regex: http://tech.sina.com.cn/$
+      name: home
+      store: no
+      extract: no
+    - regex: http://tech.163.com/$
+      name: home
+      store: no
+      extract: no
+    - regex: http://tech.qq.com/$
+      name: home
+      store: no
+      extract: no
+    - regex: http://blog.sina.com.cn/lm/tech/$
+      name: home
+      store: no
+      extract: no
+    - regex: http://blog.qq.com/tech/$
+      name: home
+      store: no
+      extract: no
+    - regex: http://it.sohu.com/$
+      name: home
+      store: no
+      extract: no
+    - regex: http://www.pingwest.com/$
+      name: home
+      store: no
+      extract: no
+
+    - regex: http://www.36kr.com/\w*/\d+.+
+      name: article
+      store: yes
+      extract: yes
+
+    - regex: http://www.techweb.com.cn/\w+.+/\d+.+
+      name: article
+      store: yes
+      extract: yes
+    - regex: http://www.techweb.com.cn/.*\.php.*
+      name: deadlink
+      store: no
+      extract: no
+    - regex: http://www.techweb.com.cn/.*\.xml.*
+      name: deadlink
+      store: no
+      extract: no
+    - regex: http://www.techweb.com.cn/\w+.+/\w+.+
+      name: article
+      store: yes
+      extract: yes
+    - regex: http://tech.163.com/\w+.+/\w+.+
+      name: article
+      store: yes
+      extract: yes
+    - regex: http://tech.qq.com/\w+.+/\w+.+
+      name: article
+      store: yes
+      extract: yes
+    - regex: http://tech.sina.com.cn/\w+.+/\w+.+
+      name: article
+      store: yes
+      extract: yes
+    - regex: http://www.pingwest.com/\w+.+
+      name: article
+      store: yes
+      extract: yes
+    - regex: http://blog.sina.com.cn/\w+.+
+      name: article
+      store: yes
+      extract: yes
+    - regex: http://blog.sina.com.cn/\w+.+
+      name: article
+      store: yes
+      extract: yes
+    - regex: http://it.sohu.com/\w+.+
+      name: article
+      store: yes
+      extract: yes
+    - regex: http://www.csdn.net/\w+.+
+      name: article
+      store: yes
+      extract: yes
+  starts:
+    - url: http://tech.sina.com.cn/
+    - url: http://tech.163.com/
+    - url: http://www.pingwest.com/
+    - url: http://blog.qq.com/tech/
+    - url: http://tech.qq.com/
+    - url: http://blog.sina.com.cn/lm/tech/
+    - url: http://www.techweb.com.cn/
+    - url: http://www.36kr.com/
+    - url: http://www.csdn.net/
+    - url: http://it.sohu.com/
